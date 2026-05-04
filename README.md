@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Domain placeholder (Cloudflare Pages)
 
-## Getting Started
+One static Next.js page that shows **which hostname** someone landed on, a short **bio**, your **projects**, and a **mailto** CTA. Deploy once to **Cloudflare Pages** and attach **every domain** you own to the same project — each `git push` updates all of them.
 
-First, run the development server:
+## Local dev
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Edit **[`lib/config.ts`](lib/config.ts)** for your name, bio, email, and project cards.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Build (static export)
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+Output is **`out/`** — that’s what Cloudflare Pages should serve.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy on Cloudflare Pages
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Push this repo to GitHub (or GitLab).
+2. In Cloudflare: **Workers & Pages** → **Create** → **Pages** → **Connect to Git**.
+3. Set:
+   - **Framework preset:** Next.js (or None — both work if commands are right).
+   - **Build command:** `npm run build`
+   - **Build output directory:** `out`
+4. Deploy. Every later push rebuilds and rolls out to **all** custom domains on that project.
 
-## Deploy on Vercel
+## Add many domains
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Open your Pages project → **Custom domains** → **Set up a custom domain**.
+2. If the domain already uses Cloudflare DNS, pick it from the list (often one click).
+3. If not, add the site to Cloudflare first (nameservers), then attach it. SSL is issued automatically.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Optional: preview locally as static files
+
+After `npm run build`, you can serve `out` with any static file server to mimic production.
