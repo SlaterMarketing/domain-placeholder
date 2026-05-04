@@ -34,6 +34,11 @@ export const siteConfig = {
       blurb: "An app I’m building — tools and workflows I care about.",
     },
     {
+      name: "UpMic",
+      url: "https://upmic.app",
+      blurb: "Open mics, stages, and live comedy — finding and listing what’s on.",
+    },
+    {
       name: "Dinabite",
       url: "https://dinabite.ai",
       blurb: "AI product work — experimenting with what’s useful.",
