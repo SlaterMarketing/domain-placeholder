@@ -5,16 +5,6 @@ export type Project = {
   blurb: string;
 };
 
-/** Open Graph image for `targetUrl`, served via Microlink’s image proxy (social-style preview). */
-export function linkPreviewImage(targetUrl: string): string {
-  const params = new URLSearchParams({
-    url: targetUrl,
-    meta: "false",
-    embed: "image.url",
-  });
-  return `https://i.microlink.io/https://api.microlink.io/?${params.toString()}`;
-}
-
 export const siteConfig = {
   name: "Will / Liam",
   portraitUrl:

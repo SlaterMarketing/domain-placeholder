@@ -4,16 +4,16 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { ExternalLink } from "lucide-react";
 
+import { LinkOgImage } from "@/components/link-og-image";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { linkPreviewImage, siteConfig } from "@/lib/config";
+import { siteConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
 
 const HOST_PLACEHOLDER = "this domain";
@@ -101,13 +101,9 @@ export default function HomePage() {
                 >
                   <Card className="h-full overflow-hidden pt-0 transition-shadow group-hover:shadow-md">
                     <div className="relative aspect-[1200/630] w-full bg-muted">
-                      <Image
-                        src={linkPreviewImage(project.url)}
+                      <LinkOgImage
+                        pageUrl={project.url}
                         alt={`Social preview for ${project.name}`}
-                        fill
-                        className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
-                        sizes="(max-width: 640px) 100vw, 50vw"
-                        unoptimized
                       />
                     </div>
                     <CardHeader className="pb-2">
