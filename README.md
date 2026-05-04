@@ -29,7 +29,7 @@ This app is a **static export** (`next build` → folder `out/`). It is **not** 
 2. In Cloudflare: **Workers & Pages** → **Create** → **Pages** → **Connect to Git**.
 3. Under **Build** / **Build configuration**:
    - **Framework preset:** **None** (do **not** choose “Next.js” — that adds `npx wrangler deploy` and OpenNext, which expects a standalone server build and will fail with errors like `pages-manifest.json` missing).
-   - **Build command:** `npm run build`
+   - **Build command:** **`npm run build`** (must be **`build`**, not `npm run dev` — `dev` starts a long‑running server and the deploy will hang).
    - **Build output directory:** `out`
    - **Deploy command:** leave **empty** (remove `npx wrangler deploy` if Cloudflare added it). Pages only needs the build; it uploads `out/` automatically.
 4. Save and deploy. Every push rebuilds and updates **all** custom domains on that project.
